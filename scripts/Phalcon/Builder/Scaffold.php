@@ -493,8 +493,8 @@ class Scaffold extends Component
 
         $code = str_replace('$assignTagDefaults$', $this->_assignTagDefaults($this->options->singular, $this->options->dataTypes, $this->options->genSettersGetters), $code);
 
-        $code = str_replace('$pkVar$', '$' . $this->options->attributes[0], $code);
-        $code = str_replace('$pk$', $this->options->attributes[0], $code);
+        $code = str_replace('$pkVar$', '$' . $this->options->attributes->get('0'), $code);
+        $code = str_replace('$pk$', $this->options->attributes->get('0'), $code);
 
         if ($this->isConsole()) {
             echo $controllerPath, PHP_EOL;
@@ -705,9 +705,9 @@ class Scaffold extends Component
             $rowCode .= ' ?></td>' . PHP_EOL;
         }
 
-        $idField =  $this->options->attributes[0];
+        $idField =  $this->options->attributes->get('0');
         if ($this->options->contains('genSettersGetters')) {
-            $idField = 'get' . Text::camelize($this->options->attributes[0]) . '()';
+            $idField = 'get' . Text::camelize($this->options->attributes->get('0')) . '()';
         }
 
         $code = file_get_contents($templatePath);
@@ -770,9 +770,9 @@ class Scaffold extends Component
             $rowCode .= ' }}</td>' . PHP_EOL;
         }
 
-        $idField = $this->options->attributes[0];
+        $idField = $this->options->attributes->get('0');
         if ($this->options->contains('genSettersGetters')) {
-            $idField = 'get' . Text::camelize($this->options->attributes[0]) . '()';
+            $idField = 'get' . Text::camelize($this->options->attributes->get('0')) . '()';
         }
 
         $code = file_get_contents($templatePath);
